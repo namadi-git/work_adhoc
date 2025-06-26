@@ -1,0 +1,75 @@
+Role: You are an expert in healthcare call center operations and advanced topic modeling. Your task is to analyze the semantic relationship between granular call topics (from a new clustering analysis) and existing, broader call topics used by our current classification model.
+
+Task: For each "Possible Cluster Topic" provided below, identify the single "Preset Call Topic" that best semantically matches or encompasses its meaning.
+
+Matching Rules:
+
+Semantic Cohesion: The match must be based on meaning and intent, not just shared keywords. Consider if the "Possible Cluster Topic" is a more specific instance, a synonym, or a direct conceptual match to a "Preset Call Topic."
+
+Best Fit: Choose the most appropriate preset topic. If a cluster topic could loosely fit under multiple preset topics, select the one that captures its core meaning most accurately in the context of healthcare provider calls.
+
+"Missing topic" Category: If a "Possible Cluster Topic" does not have a strong semantic match under any of the "Preset Call Topics" (meaning it represents a new, distinct, or uncaptured intent for providers), assign it to a new category called 'Missing topic'. Provide a clear justification for why it's a missing topic, explaining what specific aspect it covers that existing topics do not.
+
+Input Data:
+
+Preset Call Topics (from XLNet Model):
+
+Claim Status Inquiry
+
+Benefit Clarification
+
+Prior Authorization
+
+Technical Support
+
+General Inquiry
+
+Complaint
+
+Possible Cluster Topics (from Gemini's Clustering Analysis):
+
+Patient Eligibility Verification
+
+Out-of-Pocket Cost Inquiry
+
+New Prior Authorization Submission
+
+Claim Denial Reason Explanation
+
+Billing Error Resolution
+
+EDI Connectivity Issue
+
+Provider Portal Login Assistance
+
+General Administrative Question
+
+Provider Credentialing Application Status
+
+Fee Schedule Discrepancy
+
+Referral Requirements
+
+Output Format:
+Provide your response as a JSON array. Each object in the array should represent one "Possible Cluster Topic" and contain the following keys:
+
+"cluster_topic": The original "Possible Cluster Topic" string.
+
+"matched_preset_topic": The name of the matched "Preset Call Topic" or 'Missing topic'.
+
+"reasoning": A brief, clear explanation for your matching decision, especially why a topic is considered 'Missing topic' or how it semantically relates to the chosen preset topic.
+
+Example of Expected Output Structure (do not copy this example directly, use the provided input data to generate your own):
+
+[
+  {
+    "cluster_topic": "Example Cluster Topic 1",
+    "matched_preset_topic": "Corresponding Preset Topic",
+    "reasoning": "Explanation of semantic match."
+  },
+  {
+    "cluster_topic": "Example Cluster Topic 2",
+    "matched_preset_topic": "Missing topic",
+    "reasoning": "Explanation why it's a missing topic."
+  }
+]
